@@ -28,7 +28,7 @@
   },
   "homepage": "https://github.com/FranzSkuffka/vue-medium-editor#readme",
   "dependencies": {
-    "medium-editor": "^5.22.1",
+    "medium-editor": "git+https://github.com/DrupalExp/medium-editor.git",
     "webpack-cli": "^3.1.2"
   },
   "devDependencies": {
