@@ -7063,10 +7063,7 @@ MediumEditor.extensions = {};
         if (this.options.disableReturn || element.getAttribute('data-disable-return')) {
             event.preventDefault();
             if (typeof this.options.enterKeydownCallback === 'function') {
-                var _node = MediumEditor.selection.getSelectionStart(this.options.ownerDocument),
-                textContent = _node.textContent,
-                caretPositions = MediumEditor.selection.getCaretOffsets(_node);
-                this.options.enterKeydownCallback(textContent, caretPositions);
+                this.options.enterKeydownCallback(event, element);
             }
         } else if (this.options.disableDoubleReturn || element.getAttribute('data-disable-double-return')) {
             var node = MediumEditor.selection.getSelectionStart(this.options.ownerDocument);
@@ -7196,9 +7193,6 @@ MediumEditor.extensions = {};
 
             // when cursor is at the end of <blockquote>,
             // then pressing enter key should create <p> tag, not <blockquote>
-            if (typeof this.options.enterKeydownCallback === 'function') {
-                this.options.enterKeydownCallback();
-            }
             p = this.options.ownerDocument.createElement('p');
             p.innerHTML = '<br>';
             node.parentElement.insertBefore(p, node.nextSibling);
@@ -7248,7 +7242,7 @@ MediumEditor.extensions = {};
                 this.options.ownerDocument.execCommand('unlink', false, null);
             } else if (!event.shiftKey && !event.ctrlKey) {
                 if (typeof this.options.enterKeydownCallback === 'function') {
-                    this.options.enterKeydownCallback();
+                    this.options.enterKeydownCallback(event);
                 }
                 this.options.ownerDocument.execCommand('formatBlock', false, 'p');
             }
