@@ -7247,6 +7247,9 @@ MediumEditor.extensions = {};
             if (tagName === 'a') {
                 this.options.ownerDocument.execCommand('unlink', false, null);
             } else if (!event.shiftKey && !event.ctrlKey) {
+                if (typeof this.options.enterKeydownCallback === 'function') {
+                    this.options.enterKeydownCallback();
+                }
                 this.options.ownerDocument.execCommand('formatBlock', false, 'p');
             }
         }
